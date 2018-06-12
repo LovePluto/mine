@@ -1,4 +1,4 @@
-package com.test;
+package com.wyh.test;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,7 +9,13 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Student student4 = (Student) Class.forName("com.test.Student").newInstance();
+        Long l = 1L;
+        long ll = 2;
+        double d = 2;
+        Double d2 = 2.0;
+        float f = 2;
+        Float f1 = 2.0F;
+        Student student4 = (Student) Class.forName("com.wyh.test.Student").newInstance();
         Student student = new Student("张三", 2);
         Student student1 = (Student) student.clone();
         Student student2 = student.build();

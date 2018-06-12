@@ -1,4 +1,4 @@
-package com.bean;
+package com.wyh.bean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

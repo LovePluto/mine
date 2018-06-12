@@ -1,4 +1,4 @@
-package com.myBatis;
+package com.wyh.myBatis;
 
 public class Main {
 

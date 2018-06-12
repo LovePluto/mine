@@ -1,4 +1,4 @@
-package com.myBatis;
+package com.wyh.myBatis;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
