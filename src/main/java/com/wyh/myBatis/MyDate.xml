@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyh.myBatis.MyDateMapper">
+    <resultMap id="myDate" type="com.wyh.myBatis.MyDate">
+        <id property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer"></id>
+        <result property="name" column="name" jdbcType="VARCHAR" javaType="java.lang.String"></result>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP" javaType="java.util.Date"></result>
+        <result property="status" column="status" jdbcType="BOOLEAN" javaType="java.lang.Boolean"></result>
+    </resultMap>
+
+    <update id="updateAll" parameterType="java.util.Date">
+        update my_date set status=(
+        case when #{currentTime}>end_time then status=true
+        else status=false
+        end
+        )
+    </update>
+
+    <select id="selectAll" resultMap="myDate">
+        select * from my_date
+    </select>
+
+    <insert id="insertDate" parameterType="com.wyh.myBatis.MyDate">
+        insert my_date
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test='id != null and id != "" '>
+                id,
+            </if>
+            <if test="name != null and name !=''">
+                name,
+            </if>
+            <if test='startTime != null and startTime != "" '>
+                start_time,
+            </if>
+            <if test='endTime != null and endTime != "" '>
+                end_time,
+            </if>
+            <if test='status != null and status != "" '>
+                status,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test='id != null and id != "" '>
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null and name !=''">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test='startTime != null '>
+                #{startTime,jdbcType=TIMESTAMP},
+--                 date(#{startTime,jdbcType=TIMESTAMP})
+            </if>
+            <if test='endTime != null '>
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test='status != null and status != "" '>
+                #{status,jdbcType=BOOLEAN},
+            </if>
+        </trim>
+    </insert>
+</mapper>
