@@ -25,16 +25,16 @@
         insert my_date
         <trim prefix="(" suffix=")" suffixOverrides=",">
 
-            <if test='id != null and id != "" '>
+            <if test="id != null and id != '' ">
                 id,
             </if>
             <if test="name != null and name !=''">
                 name,
             </if>
-            <if test='startTime != null and startTime != "" '>
+            <if test="startTime != null">
                 start_time,
             </if>
-            <if test='endTime != null and endTime != "" '>
+            <if test="endTime != null">
                 end_time,
             </if>
             <if test='status != null and status != "" '>
@@ -50,8 +50,7 @@
                 #{name,jdbcType=VARCHAR},
             </if>
             <if test='startTime != null '>
---                 #{startTime,jdbcType=TIMESTAMP},
-                date(#{startTime,jdbcType=TIMESTAMP})
+                #{startTime,jdbcType=TIMESTAMP},
             </if>
             <if test='endTime != null '>
                 #{endTime,jdbcType=TIMESTAMP},
