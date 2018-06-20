@@ -11,7 +11,7 @@
 
     <update id="updateAll" parameterType="java.util.Date">
         update my_date set status=(
-        case when #{currentTime}>end_time then status=true
+        case when end_time>date(#{currentTime}) or end_time is null  then status=true
         else status=false
         end
         )
@@ -50,8 +50,8 @@
                 #{name,jdbcType=VARCHAR},
             </if>
             <if test='startTime != null '>
-                #{startTime,jdbcType=TIMESTAMP},
---                 date(#{startTime,jdbcType=TIMESTAMP})
+--                 #{startTime,jdbcType=TIMESTAMP},
+                date(#{startTime,jdbcType=TIMESTAMP})
             </if>
             <if test='endTime != null '>
                 #{endTime,jdbcType=TIMESTAMP},

@@ -16,6 +16,7 @@ public class MyDateService {
         SqlSession session = DBTools.getSession();
         MyDateMapper mapper = session.getMapper(MyDateMapper.class);
         System.out.println(mapper.updateAll(new Date()));
+        session.commit();
     }
 
     public static void selectAll() {
@@ -33,6 +34,7 @@ public class MyDateService {
         MyDate myDate = new MyDate();
         myDate.setName("555");
 //        myDate.setId(5);
+        Date date =new Date();
         myDate.setStartTime(new Date());
         System.out.println(mapper.insertDate(myDate));
         session.commit();
