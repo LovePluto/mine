@@ -9,11 +9,12 @@ import java.util.List;
 public class UserService {
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    public static void main(String[] args) {
-        insertUser();
+    public static void main(String[] args) throws Exception {
+//        insertUser();
         //deleteUser(1);
         //selectUserById(2);
-//        selectAllUser();
+        selectAllUser();
+//        test();
     }
 
 
@@ -23,7 +24,7 @@ public class UserService {
     private static boolean insertUser() {
         SqlSession session = DBTools.getSession();
         UserMapper mapper = session.getMapper(UserMapper.class);
-        UserBean user = new UserBean("test01", "123456", 7000.0);
+        UserBean user = new UserBean();
         try {
             int index = mapper.insertUser(user);
             boolean bool = index > 0 ? true : false;
@@ -92,7 +93,7 @@ public class UserService {
         UserMapper mapper = session.getMapper(UserMapper.class);
         try {
             List<UserBean> user = mapper.selectAllUser();
-            logger.debug("获取所用的用户:{}", user);
+            System.out.println(user.toString());
             session.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,5 +101,13 @@ public class UserService {
         } finally {
             session.close();
         }
+    }
+
+    private static void test() throws Exception {
+        SqlSession session = DBTools.getSession();
+        UserMapper mapper = session.getMapper(UserMapper.class);
+
+        List<UserBean> list = mapper.dd(1, "zhangsan");
+        System.out.println(list.toString());
     }
 }

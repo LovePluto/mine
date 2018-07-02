@@ -47,4 +47,6 @@ public interface UserMapper {
      * @throws Exception
      */
     List<UserBean> selectAllUser() throws Exception;
+
+    List<UserBean> dd(Integer id, String name) throws Exception;
 }

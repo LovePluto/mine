@@ -1,5 +1,7 @@
 package com.wyh.myBatis;
 
+import java.util.Date;
+
 public class UserBean {
 
     private int id;
@@ -7,14 +9,10 @@ public class UserBean {
     private String password;
     private double account;
 
-    public UserBean() {
-    }
+    private Date startTime;
+    private Date endTime;
 
-    public UserBean(String username, String password, double account) {
-        this.username = username;
-        this.password = password;
-        this.account = account;
-//        id = (int) Math.random() * 100000;
+    public UserBean() {
     }
 
     @Override
@@ -24,6 +22,8 @@ public class UserBean {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", account=" + account +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
                 '}';
     }
 
@@ -57,5 +57,21 @@ public class UserBean {
 
     public void setAccount(double account) {
         this.account = account;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 }
