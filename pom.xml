@@ -224,7 +224,8 @@
                 </includes>
             </resource>
             <resource>
-                <directory>src/main/resouces</directory>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
             </resource>
         </resources>
     </build>
