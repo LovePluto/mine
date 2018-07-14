@@ -1,10 +1,6 @@
 package com.wyh.test;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.HashMap;
+//import com.sun.org.apache.xpath.internal.operations.String;
 
 public class Main {
 
@@ -12,8 +8,19 @@ public class Main {
         String a = "hello";
         String b = "hello2";
         String c = a + 2;
-       if (c == b){
-           System.out.println("true");
+        if (c == b) {
+            System.out.println("true");
+        }
+
+        byte[] bs = new byte[2];
+        bs[0] = -127;
+        bs[1] = -127;
+        String s = new String(bs, "utf-16");
+        System.out.println(s);
+       byte[] aa =  "\udbdb".getBytes("utf-16");
+       for (byte bvv:aa){
+           System.out.println(bvv);
        }
+
     }
 }
