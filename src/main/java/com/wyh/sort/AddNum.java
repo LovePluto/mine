@@ -14,6 +14,7 @@ public class AddNum {
 
     /**
      * 大约6-7秒样子的，百万数据排序问题
+     * 算法来源《编程珠玑》
      *
      * @param args
      * @throws Exception
@@ -39,14 +40,11 @@ public class AddNum {
         FileOutputStream out = new FileOutputStream(file1);
         for (int i = 0; i < sortNum.length; i++) {
             if (sortNum[i] == 1) {
-//                System.out.println(i);
                 out.write((i + "").getBytes());
                 out.write("\r\n".getBytes());
             }
         }
         System.out.println(System.currentTimeMillis() - start);
-
-
     }
 
     /**
