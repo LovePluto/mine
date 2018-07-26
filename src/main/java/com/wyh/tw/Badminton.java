@@ -1,9 +1,8 @@
 package com.wyh.tw;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.time.LocalTime;
+import java.util.*;
 
 /**
  * 羽毛球馆的问题
@@ -17,40 +16,43 @@ public class Badminton {
 
 
     public static void main(String[] args) throws Exception {
-//
-//        LocalDate localDate = LocalDate.now();
-//        System.out.println(localDate.getDayOfWeek());
-//        Node node = new Node();
-//        node.start = "11:00";
-//        node.end = "22:00";
-//        node.location = "A";
-//        node.name = "user";
-//        node.date = localDate;
-//
-//        Node node1 = new Node();
-//        node1.start = "11:00";
-//        node1.end = "22:00";
-//        node1.location = "A";
-//        node1.name = "user";
-//        node1.date = localDate;
-//
-//        if (node.equals(node1)) {
-//            System.out.println("true");
-//        }
-
         Scanner scanner = new Scanner(System.in);
         String in = null;
         String[] info = null;
         while (true) {
             in = scanner.nextLine();
+            //退出判断
             if (isEmpty(in)) {
                 break;
             }
+            //检查输入
             if (checkInput(in)) {
                 System.out.println("Error: the booking is invalid!");
+                continue;
             }
-
-        }
+            Node node = new Node(in);
+            boolean success = false;
+            //添加工作流程
+            switch (node.location) {
+                case "A":
+                    success = addOrder(listA, node);
+                    break;
+                case "B":
+                    success = addOrder(listB, node);
+                    break;
+                case "C":
+                    success = addOrder(listC, node);
+                    break;
+                case "D":
+                    success = addOrder(listD, node);
+                    break;
+                default:
+            }//switch
+            if (success) {
+                System.out.println("Success: the booking is accepted!");
+            }
+        }//while
+        print();
     }
 
 
@@ -68,56 +70,252 @@ public class Badminton {
      * 检查输入是否合法
      *
      * @param s 输入字符串
-     * @return true 合法 false 不合法
+     * @return true 不合法 false 合法
      */
-    private static boolean checkInput(String s) {
+    public static boolean checkInput(String s) {
         String[] info = s.split(" ");
-        if (info.length != 4 || info.length != 5) {
-            return false;
+        if (info.length != 4 && info.length != 5) {
+            return true;
         }
         try {
             LocalDate.parse(info[1]);
             String[] date = info[2].split("~");
-            if (date[0].compareTo(date[1]) < 0) {
-                return false;
+            LocalTime time1 = LocalTime.parse(date[0]);
+            LocalTime time2 = LocalTime.parse(date[1]);
+            if (time1.getMinute() > 0 || time2.getMinute() > 0 || !time1.isBefore(time2)) {
+                return true;
+            }
+            if (checkTime(time1) || checkTime(time2)) {
+                return true;
             }
             if (!info[3].equals("A")
                     && !info[3].equals("B")
                     && !info[3].equals("C")
                     && !info[3].equals("D")) {
-                return false;
+                return true;
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+//            e.printStackTrace();
+            return true;
         }
         if (info.length == 5 && !"C".equals(info[4])) {
-            return false;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 检查小时是否在指定范围内
+     *
+     * @param localTime
+     * @return
+     */
+    private static boolean checkTime(LocalTime localTime) {
+        return localTime.getHour() < 9 || localTime.getHour() > 22;
+    }
+
+
+    /**
+     * 添加记录
+     *
+     * @param list
+     * @param node
+     */
+    public static boolean addOrder(ArrayList<Node> list, Node node) {
+        if (list.contains(node)) {
+            int index = list.indexOf(node);
+            if (index < 0 || list.get(index).status) {
+                System.out.println("Error: the booking being cancelled does not exist!");
+                return false;
+            }
+            list.set(index, node);
+        } else {
+            for (Node node1 : list) {
+                if (node.checkOver(node1)) {
+                    System.out.println("Error: the booking conflicts with existing bookings!");
+                    return false;
+                }
+            }
+            list.add(node);
         }
         return true;
     }
 
+    /**
+     * 打印输出
+     */
+    private static void print() {
 
-    static class Node {
+        int total = 0;
+        System.out.println("收入汇总：");
+        System.out.println("---");
+        System.out.println("场地A");
+        total += printList(listA);
+        System.out.println();
+        System.out.println("场地B");
+        total += printList(listB);
+        System.out.println();
+        System.out.println("场地C");
+        total += printList(listC);
+        System.out.println();
+        System.out.println("场地D");
+        total += printList(listD);
+        System.out.println("---");
+        System.out.println("总计：" + total + "元");
+
+    }
+
+    /**
+     * 一个数组的打印
+     *
+     * @param list
+     * @return
+     */
+    private static int printList(List<Node> list) {
+        Collections.sort(list);
+        int price = 0;
+        for (Node node : list) {
+            if (node.isStatus()) {
+                System.out.println(node.date + " " + node.start + "~" + node.end
+                        + " 违约金 " + node.getPrice() + "元");
+            } else {
+                System.out.println(node.date + " " + node.start + "~" + node.end
+                        + " " + node.getPrice() + "元");
+            }
+            price += node.getPrice();
+        }
+        System.out.println("小计：" + price + "元");
+        return price;
+    }
+
+
+    /**
+     * 这个类本来应该单独写的
+     * Node 节点，储存一条信息
+     */
+    static class Node implements Comparable {
         String name;
         LocalDate date;
-        String start;
-        String end;
+        LocalTime start;
+        LocalTime end;
         String location;
-        boolean status;
+        private boolean status;
+        private int price;
+
+        //价格表，上三角为周一到周五，下三角为周末
+        private int[][] priceTable = {
+                {0, 30, 60, 90, 140, 190, 240, 290, 340, 390, 470, 550, 610, 670},
+                {40, 0, 30, 60, 110, 160, 210, 260, 310, 360, 440, 520, 580, 640},
+                {80, 40, 0, 30, 80, 130, 180, 230, 280, 330, 410, 490, 550, 610},
+                {120, 80, 40, 0, 50, 100, 150, 200, 250, 300, 380, 460, 520, 580},
+                {170, 130, 90, 50, 0, 50, 100, 150, 200, 250, 330, 410, 470, 530},
+                {220, 180, 140, 100, 50, 0, 50, 100, 150, 200, 280, 360, 420, 480},
+                {270, 230, 190, 150, 100, 50, 0, 50, 100, 150, 230, 310, 370, 430},
+                {320, 280, 240, 200, 150, 100, 50, 0, 50, 100, 180, 260, 320, 380},
+                {370, 330, 290, 250, 200, 150, 100, 50, 0, 50, 130, 210, 270, 330},
+                {420, 380, 340, 300, 250, 200, 150, 100, 50, 0, 80, 160, 220, 280},
+                {480, 440, 400, 360, 310, 260, 210, 160, 110, 60, 0, 80, 140, 200},
+                {540, 500, 460, 420, 370, 320, 270, 220, 170, 120, 60, 0, 60, 120},
+                {600, 560, 520, 480, 430, 380, 330, 280, 230, 180, 120, 60, 0, 60},
+                {660, 620, 580, 540, 490, 440, 390, 340, 290, 240, 180, 120, 60, 0}
+        };
+
 
         public Node(String s) {
             String[] ss = s.split(" ");
             name = ss[0];
             date = LocalDate.parse(ss[1]);
             String[] time = ss[2].split("~");
-            start = time[0];
-            end = time[1];
+            start = LocalTime.parse(time[0]);
+            end = LocalTime.parse(time[1]);
             location = ss[3];
             if (ss.length == 5) {
                 status = true;
             } else {
                 status = false;
+            }
+            calPrice();
+        }
+
+
+        /**
+         * 计算价格
+         */
+        private void calPrice() {
+            int res = 0;
+            double cost = 0;
+            switch (this.date.getDayOfWeek().getValue()) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    res = priceTable[start.getHour() - 9][end.getHour() - 9];
+                    cost = 0.5;
+                    break;
+                case 6:
+                case 7:
+                    res = priceTable[end.getHour() - 9][start.getHour() - 9];
+                    cost = 0.25;
+                    break;
+                default:
+                    res = 0;
+                    break;
+            }
+            //是否取消
+            if (status) {
+                this.price = (int) (res * cost);
+            } else {
+                this.price = res;
+            }
+        }
+
+        /**
+         * 检查两者是否重合和取消
+         *
+         * @param node
+         * @return true 重合 false 不重合
+         */
+        public boolean checkOver(Node node) {
+            //取消的预定，肯定不重合
+            if (node.status) {
+                return false;
+            }
+            //日期是否重合
+            if (!this.date.isEqual(node.date)) {
+                return false;
+            }
+
+            if (this.end.getHour() <= node.start.getHour() || node.end.getHour() <= this.end.getHour()) {
+                return false;
+            }
+
+            return true;
+        }
+
+
+        public int getPrice() {
+            return price;
+        }
+
+        public boolean isStatus() {
+            return status;
+        }
+
+
+        @Override
+        public int compareTo(Object o) {
+            Node node = (Node) o;
+            if (this.date.isBefore(node.date)) {
+                return -1;
+            } else if (this.date.isEqual(node.date)) {
+                if (this.start.isBefore(node.start)) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            } else {
+                return 1;
             }
         }
 
@@ -126,8 +324,7 @@ public class Badminton {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Node node = (Node) o;
-            return status == node.status &&
-                    Objects.equals(name, node.name) &&
+            return Objects.equals(name, node.name) &&
                     Objects.equals(date, node.date) &&
                     Objects.equals(start, node.start) &&
                     Objects.equals(end, node.end) &&
@@ -136,7 +333,7 @@ public class Badminton {
 
         @Override
         public int hashCode() {
-            return Objects.hash(name, date, start, end, location, status);
+            return Objects.hash(name, date, start, end, location);
         }
     }
 
