@@ -44,7 +44,12 @@ public class Main3 {
         return s1.equals(s2);
     }
 
-    //这种算法比上面那种要高效
+    /**
+     * 进阶版本算法，思路来源于 Main2
+     *
+     * @param x
+     * @return
+     */
     public static boolean isPalindrome2(int x) {
         int xx = x;
         if (x == 0) {
