@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class Badminton {
 
+    //这里是可以优化的，不过懒得了，就这样吧，
     private static ArrayList<Node> listA = new ArrayList();
     private static ArrayList<Node> listB = new ArrayList();
     private static ArrayList<Node> listC = new ArrayList();
