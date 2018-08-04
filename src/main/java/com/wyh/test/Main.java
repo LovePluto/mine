@@ -38,6 +38,7 @@ public class Main {
             return ("BB");
         }
 
+        @Override
         public String show(A obj) {
             return ("BA");
         }
