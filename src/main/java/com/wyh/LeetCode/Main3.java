@@ -32,6 +32,12 @@ public class Main3 {
     }
 
 
+    /**
+     * 借助 String api 直接逆序然后比较
+     *
+     * @param x
+     * @return
+     */
     public static boolean isPalindrome(int x) {
         if (x == 0) {
             return true;

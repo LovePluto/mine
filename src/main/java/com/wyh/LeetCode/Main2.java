@@ -2,8 +2,8 @@ package com.wyh.LeetCode;
 
 
 /**
- *  * 2018.08.01
- *
+ * * 2018.08.01
+ * <p>
  * 给定一个 32 位有符号整数，将整数中的数字进行反转。
  * 示例 1:
  * <p>
@@ -37,6 +37,7 @@ public class Main2 {
 
     /**
      * 自己的算法
+     * 借助 String api 直接逆序数字，然后根据规则返回
      *
      * @param x
      * @return
