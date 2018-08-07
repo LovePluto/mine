@@ -5,6 +5,10 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
+
+/**
+ * 独占式锁
+ */
 public class Mutex implements Lock {
     private static class Sync extends AbstractQueuedSynchronizer {
 
