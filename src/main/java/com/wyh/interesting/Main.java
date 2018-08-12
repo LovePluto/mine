@@ -1,12 +1,7 @@
 package com.wyh.interesting;
 
-import java.lang.ref.PhantomReference;
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.SoftReference;
-import java.lang.ref.WeakReference;
-import java.util.concurrent.TimeUnit;
-
 public class Main {
+
 
     public static void main(String[] args) throws Exception {
         System.out.println(5 & 4);
@@ -19,6 +14,25 @@ public class Main {
 //        System.gc();
 //        Thread.sleep(10 * 1000);
 //        System.out.println(weakReference.get());
+//    }
+
+
+//    public static void main(String[] args) throws Exception {
+//       byte[] b = new byte[1024 * 1024 * 5];
+//        SoftReference<String> softReference = new SoftReference<>(new String("Hello SoftReference"));
+//        WeakReference<String> weakReference = new WeakReference<>(new String("Hello WeakReference"));
+//        ReferenceQueue<String> referenceQueue = new ReferenceQueue<>();
+//        PhantomReference<String> phantomReference = new PhantomReference<>(new String("Hello PhantomReference"), referenceQueue);
+//        System.out.println("GC 之前：softReference：" + softReference.get() + "，weakReference：" + weakReference.get() + "，phantomReference：" + phantomReference.get());
+//        System.gc();
+//        Thread.sleep(1000);
+//        System.out.println("第一次 GC 之后：softReference：" + softReference.get() + "，weakReference：" + weakReference.get() + "，phantomReference：" + phantomReference.get());
+//        //模拟内存占用
+//        SoftReference[] softArr = new SoftReference[5];
+//        softArr[0] = new SoftReference<byte[]>(new byte[1024 * 1024 * 2]);
+//        softArr[1] = new SoftReference<byte[]>(new byte[1024 * 1024 * 1]);
+//        softArr[2] = new SoftReference<byte[]>(new byte[1024 * 1024 * 2]);
+//        System.out.println("内存满了之后：softReference：" + softReference.get() + "，weakReference：" + weakReference.get() + "，phantomReference：" + phantomReference.get());
 //    }
 
 
