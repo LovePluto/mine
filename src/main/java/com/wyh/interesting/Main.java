@@ -4,9 +4,9 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-        System.out.println(5 & 4);
-        StringBuilder stringBuilder;
-        StringBuffer stringBuffer;
+        StringBuffer sb = new StringBuffer("1111");
+        sb.append("222");
+        System.err.println(sb.toString());
     }
     //    public static void main(String[] args) throws Exception {
 //        String s = new String("Hello word");

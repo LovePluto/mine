@@ -65,7 +65,7 @@ public class TwinsLock implements Lock {
 
     @Override
     public boolean tryLock() {
-        return sync.tryReleaseShared(1);
+        return sync.tryAcquireShared(1) > -1 ? true : false;
     }
 
     @Override

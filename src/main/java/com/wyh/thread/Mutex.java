@@ -7,7 +7,8 @@ import java.util.concurrent.locks.Lock;
 
 
 /**
- * 独占式锁
+ * 独占式锁,而且不支持重入，自己彩瓷获取直接陷入阻塞状态
+ * 个人猜测应该会导致死锁问题。
  */
 public class Mutex implements Lock {
     private static class Sync extends AbstractQueuedSynchronizer {
@@ -21,13 +22,13 @@ public class Mutex implements Lock {
         //当状态为 0 的时候获取锁
         @Override
         protected boolean tryAcquire(int arg) {
-
             if (compareAndSetState(0, 1)) {
                 setExclusiveOwnerThread(Thread.currentThread());
                 return true;
             }
             return false;
         }
+
 
         //释放锁，将状态设置为 0
         @Override
