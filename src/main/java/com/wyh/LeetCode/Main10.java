@@ -1,6 +1,8 @@
 package com.wyh.LeetCode;
 
 /**
+ * 直接看 Main 15 的零钱兑换
+ * <p>
  * 给定数组arr，arr中所有的值都为正数且不重复。
  * 每个值代表一种面值的货币，每种面值的货币可以使用任意张，再给定一个整数aim代表要找的钱数，求换钱有多少种方法。
  * <p>
@@ -10,7 +12,6 @@ public class Main10 {
 
 
     public static void main(String[] args) throws Exception {
-
         int[] arr = {5, 10, 25, 3};
         int aim = 1000;
         System.out.println(coins1(arr, aim));

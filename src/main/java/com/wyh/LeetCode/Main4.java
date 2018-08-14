@@ -2,6 +2,7 @@ package com.wyh.LeetCode;
 
 /**
  * 2018.08.04
+ * 8. 字符串转整数 (atoi)
  * 实现 atoi，将字符串转为整数。
  * <p>
  * 在找到第一个非空字符之前，需要移除掉字符串中的空格字符。如果第一个非空字符是正号或负号，选取该符号，并将其与后面尽可能多的连续的数字组合起来，这部分字符即为整数的值。如果第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。
@@ -68,11 +69,9 @@ public class Main4 {
      * @return
      */
     public static int myAtoi(String str) {
-
         if (str == null || str.length() == 0) {
             return 0;
         }
-
         String[] ss = str.split("\\s+");
         if (ss == null || ss.length == 0) {
             return 0;
