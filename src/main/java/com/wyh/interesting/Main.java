@@ -7,7 +7,39 @@ public class Main {
         StringBuffer sb = new StringBuffer("1111");
         sb.append("222");
         System.err.println(sb.toString());
+//        System.out.println(fibonacci(6));
     }
+
+    public static int[] dp;
+
+    public static int fibonacci(int n) {
+        dp = new int[n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            dp[i] = -1;
+        }
+        dp[1] = 1;
+        dp[2] = 1;
+        for (int i = 3; i < n + 1; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
+
+    public static int solve(int n) {
+        if (n < 1) {
+            return 0;
+        }
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        if (dp[n] != -1) {
+            return dp[n];
+        }
+        dp[n] = solve(n - 1) + solve(n - 2);
+        return dp[n];
+    }
+
+
     //    public static void main(String[] args) throws Exception {
 //        String s = new String("Hello word");
 //        WeakReference<String> weakReference = new WeakReference<>(s);
