@@ -7,8 +7,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.wyh.tw.Badminton.checkInput;
+import static org.junit.Assert.assertEquals;
 
 
 public class MainTest {
@@ -24,7 +28,7 @@ public class MainTest {
         Badminton.Node node1 = new Badminton.Node(s);
 
         System.out.println(node);
-        Assert.assertEquals(node, node1);
+        assertEquals(node, node1);
         if (node.equals(node1)) {
             System.out.println("true");
         }
@@ -51,8 +55,15 @@ public class MainTest {
         String s1 = "U002 2017-08-01 19:00~20:00 A";
         Badminton.Node node = new Badminton.Node(s);
         Badminton.Node node1 = new Badminton.Node(s1);
-        if (node.checkTimeOver(node1)){
+        if (node.checkTimeOver(node1)) {
             System.out.println("true");
         }
+    }
+
+    @Test
+    public void testFlatMapping() throws Exception {
+        final long count = Stream.of(1, 2, 3, 4, 5)
+                .count();
+        assertEquals(4, count);
     }
 }

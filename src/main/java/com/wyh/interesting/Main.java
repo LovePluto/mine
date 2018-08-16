@@ -1,43 +1,51 @@
 package com.wyh.interesting;
 
+import java.util.stream.Stream;
+
+import static org.junit.Assert.assertEquals;
+
 public class Main {
 
 
     public static void main(String[] args) throws Exception {
-        StringBuffer sb = new StringBuffer("1111");
-        sb.append("222");
-        System.err.println(sb.toString());
+//        StringBuffer sb = new StringBuffer("1111");
+//        sb.append("222");
+//        System.err.println(sb.toString());
 //        System.out.println(fibonacci(6));
+
+        final long count = Stream.of(1, 2, 3, 4, 5).filter(integer -> integer > 1)
+                .count();
+//        assertEquals(4, count);
     }
 
-    public static int[] dp;
-
-    public static int fibonacci(int n) {
-        dp = new int[n + 1];
-        for (int i = 0; i < n + 1; i++) {
-            dp[i] = -1;
-        }
-        dp[1] = 1;
-        dp[2] = 1;
-        for (int i = 3; i < n + 1; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
-        }
-        return dp[n];
-    }
-
-    public static int solve(int n) {
-        if (n < 1) {
-            return 0;
-        }
-        if (n == 1 || n == 2) {
-            return 1;
-        }
-        if (dp[n] != -1) {
-            return dp[n];
-        }
-        dp[n] = solve(n - 1) + solve(n - 2);
-        return dp[n];
-    }
+//    public static int[] dp;
+//
+//    public static int fibonacci(int n) {
+//        dp = new int[n + 1];
+//        for (int i = 0; i < n + 1; i++) {
+//            dp[i] = -1;
+//        }
+//        dp[1] = 1;
+//        dp[2] = 1;
+//        for (int i = 3; i < n + 1; i++) {
+//            dp[i] = dp[i - 1] + dp[i - 2];
+//        }
+//        return dp[n];
+//    }
+//
+//    public static int solve(int n) {
+//        if (n < 1) {
+//            return 0;
+//        }
+//        if (n == 1 || n == 2) {
+//            return 1;
+//        }
+//        if (dp[n] != -1) {
+//            return dp[n];
+//        }
+//        dp[n] = solve(n - 1) + solve(n - 2);
+//        return dp[n];
+//    }
 
 
     //    public static void main(String[] args) throws Exception {
