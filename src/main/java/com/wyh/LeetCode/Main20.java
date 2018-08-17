@@ -2,7 +2,7 @@ package com.wyh.LeetCode;
 
 
 /**
- * 6. 不同的二叉搜索树
+ * 96. 不同的二叉搜索树
  * <p>
  * 给定一个整数 n，求以 1 ... n 为节点组成的二叉搜索树有多少种？
  * <p>
@@ -18,6 +18,14 @@ package com.wyh.LeetCode;
  * 3     2     1      1   3      2
  * /     /       \                 \
  * 2     1         2                 3
+ * <p>
+ * 思路：
+ * 树分三部分：根，左子树，右子树
+ * 根固定占一个节点，左子树占 k 个节点，右子树占 n-k-1 个节点
+ * 组合数：k * (n-k-1) 就是答案
+ * k 的值从 0 到 n-1
+ * <p>
+ * 放弃递归，很容易就爆栈了
  */
 public class Main20 {
 
@@ -29,49 +37,20 @@ public class Main20 {
 
     public static int[] dp;
 
+    //算法能过，需要一点点技巧
     public static int numTrees(int n) {
-
+        if (n < 3) {
+            return n;
+        }
         dp = new int[n + 1];
-        for (int i = 0; i < n + 1; i++) {
-            dp[i] = 1;
+        dp[0] = 1;
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                dp[i] += dp[j] * dp[i - j - 1];
+            }
         }
-        return solve(n, n);
-    }
-
-    public static int solve(int current, int n) {
-
-        if (current < 1) {
-            return 1;
-        }
-        if (current > n) {
-            return 1;
-        }
-        int temp = 0;
-        for (int i = 0; i < n; i++) {
-            temp += solve(current - i, n) + solve(current + i, n);
-        }
-
-        return temp;
-
-    }
-
-    public static int solveLeft(int current, int n) {
-        if (current == 1) {
-            return 1;
-        }
-        if (current < 1) {
-            return 0;
-        }
-        return solveLeft(current - 1, n) + solveRight(current + 1, n);
-    }
-
-    public static int solveRight(int current, int n) {
-        if (current == n) {
-            return 1;
-        }
-        if (current > n) {
-            return 0;
-        }
-        return solveLeft(current - 1, n) + solveRight(current + 1, n);
+        return dp[n];
     }
 }
