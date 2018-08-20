@@ -1,5 +1,6 @@
 package com.wyh.LeetCode;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,4 +82,5 @@ public class Main21 {
         }
         return min;
     }
+
 }

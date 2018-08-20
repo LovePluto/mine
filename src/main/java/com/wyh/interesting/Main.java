@@ -6,7 +6,6 @@ import static org.junit.Assert.assertEquals;
 
 public class Main {
 
-
     public static void main(String[] args) throws Exception {
 //        StringBuffer sb = new StringBuffer("1111");
 //        sb.append("222");

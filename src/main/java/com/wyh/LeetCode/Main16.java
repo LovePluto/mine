@@ -113,7 +113,6 @@ public class Main16 {
 //            }
 //        }
 //        dp[0][0] = nums[0];
-//
 //        //这里多次修改无果
 //        for (int i = 1; i < nums.length; i++) {
 ////            dp[0][i] = dp[0][i - 1] + nums[i];
@@ -151,7 +150,6 @@ public class Main16 {
 //    }
 //
 //    public static int solve(int start, int end, int[] nums) {
-//
 //        if (start > end) {
 //            return Integer.MIN_VALUE;
 //        }
@@ -168,7 +166,6 @@ public class Main16 {
 //        for (int i = start; i <= end; i++) {
 //            total += nums[i];
 //        }
-//
 //        int b = solve(start, end - 1, nums);
 //        int a = solve(start - 1, end, nums);
 //        total = Math.max(total, a);
@@ -190,7 +187,6 @@ public class Main16 {
 //    }
 //
 //    public static int solve(int start, int end, int[] nums) {
-//
 //        if (start > end) {
 //            return Integer.MIN_VALUE;
 //        }
@@ -207,7 +203,6 @@ public class Main16 {
 //        for (int i = start; i <= end; i++) {
 //            total += nums[i];
 //        }
-//
 //        int b = solve(start, end + 1, nums);
 //        int a = solve(start + 1, end, nums);
 //        total = Math.max(total, a);
@@ -221,7 +216,6 @@ public class Main16 {
 //    public static int maxSubArray(int[] nums) {
 //        return solve(0, 0, nums);
 //    }
-//
 //    public static int solve(int start, int end, int[] nums) {
 //        if (start > end) {
 //            return Integer.MIN_VALUE;
