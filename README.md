@@ -35,5 +35,5 @@
 - 213 打家劫舍 II   Main 22
 - 300 最长上升子序列   Main 23
 - 152 乘积最大子序列   Main 23
-#### interstiong
+#### interesting
 > 一些有趣实验
