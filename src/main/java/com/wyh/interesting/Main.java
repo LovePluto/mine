@@ -1,8 +1,9 @@
 package com.wyh.interesting;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.stream.Stream;
-
-import static org.junit.Assert.assertEquals;
 
 public class Main {
 
@@ -15,6 +16,18 @@ public class Main {
         final long count = Stream.of(1, 2, 3, 4, 5).filter(integer -> integer > 1)
                 .count();
 //        assertEquals(4, count);
+    }
+
+
+    public void foo() {
+        ArrayList k;
+        cc:
+        {
+            int a = 1;
+            System.out.println("dd");
+            break cc;
+        }
+
     }
 
 //    public static int[] dp;
