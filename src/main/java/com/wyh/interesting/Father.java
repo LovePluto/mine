@@ -3,11 +3,11 @@ package com.wyh.interesting;
 public  abstract  class Father {
 
 
+
     private String cc;
 
     public Father() {
     }
-
 
     public void foo() {
         class Son2 {
