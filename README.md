@@ -37,5 +37,6 @@
 - 152 乘积最大子序列   Main 24
 - 338 比特位计数   Main 25
 - 413 等差数列划分   Main 26
-#### interstiong
+
+#### interesting
 > 一些有趣实验
