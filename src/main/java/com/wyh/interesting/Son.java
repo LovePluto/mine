@@ -1,5 +1,8 @@
 package com.wyh.interesting;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Son extends Father {
 
 //    @Override
@@ -8,7 +11,13 @@ public class Son extends Father {
 //    }
 
 
-//    public void foo(int i) {
-//        System.out.println("son int");
-//    }
+    public static void foo(List<? extends Father> list) {
+        System.out.println("son int");
+    }
+
+    public static void main(String[] args) throws Exception {
+        List<Father> list1 = new ArrayList<>();
+        list1.add(new Son());
+        foo(list1);
+    }
 }

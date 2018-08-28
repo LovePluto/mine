@@ -1,21 +1,32 @@
 package com.wyh.interesting;
 
+
+/**
+ * dd
+ *
+ * @aa aa
+ * @bb bb
+ * @aa aa2
+ */
 public class Animal {
 
-    static Action action = new Action() {
-        @Override
-        public void eat() {
-            System.out.println("eat");
-        }
-    };
+    /**
+     * names
+     */
+    private String name;
 
     public static void main(String[] args) {
-        new Action() {
-            @Override
-            public void eat() {
-                System.out.println("eat");
-            }
-        }.eat();
+
+    }
+
+
+    /**
+     * foo
+     * foo1
+     *
+     * @foo cc
+     */
+    public void foo() {
 
     }
 }
