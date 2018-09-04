@@ -12,11 +12,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
 
-//        User user = new User("zhangsan", 10);
-//        System.out.println("序列化之前：" + user.toString());
-//        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("user.obj"));
-//        out.writeObject(user);
-//        out.close();
+        User user = new User("zhangsan", 10);
+        System.out.println("序列化之前：" + user.toString());
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("user.obj"));
+        out.writeObject(user);
+        out.close();
         ObjectInputStream in = new ObjectInputStream(new FileInputStream("user.obj"));
         User u = (User) in.readObject();
         in.close();

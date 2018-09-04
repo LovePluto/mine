@@ -1,31 +1,36 @@
 package com.wyh.interesting;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.stream.Stream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
-//        StringBuffer sb = new StringBuffer("1111");
-//        sb.append("222");
-//        System.err.println(sb.toString());
-//        System.out.println(fibonacci(6));
+    private static final String REGEX = "\\bcat\\b";
+    private static final String INPUT =
+            "cat cat cat cattie cat";
 
-        final long count = Stream.of(1, 2, 3, 4, 5).filter(integer -> integer > 1)
-                .count();
-//        assertEquals(4, count);
+    public static void main( String args[] ){
+        Pattern p = Pattern.compile(REGEX);
+        Matcher m = p.matcher(INPUT); // 获取 matcher 对象
+        int count = 0;
+
+        while(m.find()) {
+            count++;
+            System.out.println("Match number "+count);
+            System.out.println("start(): "+m.start());
+            System.out.println("end(): "+m.end());
+        }
     }
 
 
-    public void foo() {
-        ArrayList k;
-        cc:
-        {
-            int a = 1;
-            System.out.println("dd");
-            break cc;
+    public static int foo() {
+        int i = 1;
+
+        try {
+            return i;
+        } finally {
+            ++i;
+            return i;
         }
 
     }
