@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Lock;
 
 
 /**
- * 独占式锁,而且不支持重入，自己彩瓷获取直接陷入阻塞状态
+ * 独占式锁,而且不支持重入，自己获取直接陷入阻塞状态
  * 个人猜测应该会导致死锁问题。
  */
 public class Mutex implements Lock {
