@@ -1,7 +1,5 @@
 package com.wyh.bean;
 
-import java.util.Scanner;
-
 public class Main {
 
 //    public static void main(String[] args) throws Exception {
@@ -57,31 +55,10 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int[][] arr = new int[n][3];
-        for (int i = 0; i < n; i++) {
-            arr[i][0] = in.nextInt();
-            arr[i][1] = in.nextInt();
-            arr[i][2] = in.nextInt();
-        }
-        int[] dp = new int[n];
-        int res = 0;
-        for (int i = 0; i < n; i++) {
-            if (dp[i] == 1) {
-                continue;
-            }
-            for (int j = 0; j < n; j++) {
-                if (dp[i] == 1) {
-                    continue;
-                }
-                if (arr[i][0] > arr[j][0] && arr[i][1] > arr[j][1] && arr[i][2] > arr[j][2]) {
-                    dp[j] = 1;
-                    res++;
-                }
-            }
-        }
-        System.out.println(res);
+        Integer integer = 20;
+        Integer integer1 = 20;
+        Integer.valueOf("200");
+        System.out.println(integer == integer1);
     }
 
 //    public static void main(String[] args) throws Exception {

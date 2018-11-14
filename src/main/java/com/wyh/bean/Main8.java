@@ -1,5 +1,6 @@
 package com.wyh.bean;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main8 {
@@ -9,52 +10,26 @@ public class Main8 {
 
     public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        if (n <= 0) {
-            System.out.println(0);
-            return;
+        String input = in.nextLine();
+        String[] arr = input.split(" ");
+        if (arr.length != 2) {
+            System.exit(0);
         }
-        int[] arr = new int[]{1, 5, 10, 20, 50};
-        dp = new int[5][n + 1];
-        for (int i = 0; i < 5; i++) {
-            dp[i][0] = 1;
+        String[] arr1 = arr[0].split(",");
+        Integer[] arr2 = new Integer[arr1.length];
+        for (int i = 0; i < arr1.length; i++) {
+            arr2[i] = Integer.valueOf(arr1[i]);
         }
-        for (int i = 0; i <= n; i++) {
-            dp[0][i] = 1;
-        }
-        for (int i = 1; i < 5; i++) {
-            for (int j = 1; j <= n; j++) {
-                if ((j - arr[i]) >= 0) {
-                    dp[i][j] = dp[i - 1][j] + dp[i][j - arr[i]];
-                }
-                int temp = 0;
-                for (int x = 0; j - arr[i] * x >= 0; x++) {
-                    temp += dp[i - 1][j - arr[i] * x];
-                }
-                dp[i][j] = temp;
-            }
-        }
-        System.out.println(dp[4][n]);
-    }
 
-//    public static int solve(int[] arr, int index, int money) {
-//
-//        if (money < 0) {
-//            return 0;
-//        }
-//        if (money == 0) {
-//            return 1;
-//        }
-//        if (index > 4) {
-//            return 0;
-//        }
-//        if (dp[index][money] != -1) {
-//            return dp[index][money];
-//        }
-//        int res = 0;
-//        for (int i = 0; i * arr[index] <= money; i++) {
-//            res += solve(arr, index + 1, money - i * arr[index]);
-//        }
-//        return res;
-//    }
+        Integer res = Arrays.binarySearch(arr2, Integer.valueOf(arr[1]));
+
+        if (res > -1) {
+            System.out.println(res);
+        } else {
+            res = -res;
+            System.out.println(res - 1);
+        }
+
+
+    }
 }

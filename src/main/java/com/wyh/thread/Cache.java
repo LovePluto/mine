@@ -11,10 +11,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class Cache {
 
-    static Map<String, Object> map = new HashMap<>();
-    static ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
-    static Lock r = rwl.readLock();
-    static Lock w = rwl.writeLock();
+    private final static Map<String, Object> map = new HashMap<>();
+    private final static ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
+    private final static Lock r = rwl.readLock();
+    private final static Lock w = rwl.writeLock();
 
     // 获取一个 key 对应的 value
     public static final Object get(String key) {
@@ -45,5 +45,4 @@ public class Cache {
             w.unlock();
         }
     }
-
 }

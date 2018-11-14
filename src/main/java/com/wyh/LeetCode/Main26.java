@@ -1,5 +1,7 @@
 package com.wyh.LeetCode;
 
+import java.nio.file.Files;
+
 /**
  * 413. 等差数列划分
  * <p>
@@ -46,6 +48,8 @@ public class Main26 {
         int[] arr6 = {1, 2, 3, 5, 7, 8};
         System.out.println(numberOfArithmeticSlices(arr));
     }
+
+
 
     public static int numberOfArithmeticSlices(int[] A) {
         if (A.length < 3) {

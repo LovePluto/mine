@@ -16,8 +16,7 @@ public class Son extends Father {
     }
 
     public static void main(String[] args) throws Exception {
-        List<Father> list1 = new ArrayList<>();
-        list1.add(new Son());
-        foo(list1);
+        Integer i = new Integer(0);
+        i++;
     }
 }
